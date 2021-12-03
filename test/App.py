@@ -25,7 +25,7 @@ class myApp(object):
         
         print("stress io")
         subprocess.check_call(["stress-ng","--iomix","1",
-                               "--iomix-bytes","10%","-t 10s"])
+                               "--iomix-bytes","10%","-t 10s"],stdout=None)
     
     def start(self):
         while(True):
@@ -40,8 +40,8 @@ if __name__ == "__main__":
     
     procu=ps.Process(pid=proc.pid)
     
-    cpuStart_o=np.sum(proc.cpu_times()[0:2])
-    ioStart_o=np.sum(proc.io_counters()[0:2])
+    cpuStart_o=np.sum(procu.cpu_times()[0:2])
+    ioStart_o=np.sum(procu.io_counters()[0:2])
     i=0
     for i in range(100):
         time.sleep(2)
