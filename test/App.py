@@ -8,6 +8,7 @@ import psutil as ps
 import numpy as np
 from multiprocessing import Process
 import time
+import subprocess
 
 class myApp(object):
     
@@ -17,9 +18,14 @@ class myApp(object):
         if(self.ps==None):
             self.ps=ps.Process()
             
+        print("stress cpu")
         start=np.sum(self.ps.cpu_times()[0:2])
         while(np.sum(self.ps.cpu_times()[0:2])-start<stime):
             pass
+        
+        print("stress io")
+        subprocess.check_call(["stress-ng","--iomix","1",
+                               "--iomix-bytes","10%","-t 10s"])
     
     def start(self):
         while(True):
