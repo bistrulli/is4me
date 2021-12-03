@@ -25,7 +25,7 @@ class myApp(object):
             pass
         
         print("stress io")
-        subprocess.check_call(["stress-ng","--hdd","1","-t 10s"],stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+        subprocess.check_call(["stress-ng","--hdd","1","-t 1s"],stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
     
     def start(self):
         while(True):
@@ -43,7 +43,7 @@ if __name__ == "__main__":
     cpuStart_o=np.sum(procu.cpu_times()[0:2])
     ioStart_o=np.sum(procu.io_counters()[0:2])
     
-    interval=1
+    interval=2
     i=0
     for i in range(100):
         time.sleep(interval)
