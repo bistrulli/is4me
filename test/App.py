@@ -40,11 +40,18 @@ if __name__ == "__main__":
     
     procu=ps.Process(pid=proc.pid)
     
+    cpuStart_o=np.sum(proc.cpu_times()[0:2])
+    ioStart_o=np.sum(proc.io_counters()[0:2])
     i=0
     for i in range(100):
-        #print(procu.cpu_percent(interval=2))
-        print(procu.io_counters())
         time.sleep(2)
+        cpuStart_n=np.sum(proc.cpu_times()[0:2])
+        ioStart_n=np.sum(proc.io_counters()[0:2])
+        
+        print([(cpuStart_n-cpuStart_o)/2,(ioStart_n-ioStart_o)/2])
+        
+        cpuStart_n=cpuStart_o
+        ioStart_n=ioStart_o
         i+=1
     
     
