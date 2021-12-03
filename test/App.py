@@ -45,8 +45,8 @@ if __name__ == "__main__":
     i=0
     for i in range(100):
         time.sleep(2)
-        cpuStart_n=np.sum(proc.cpu_times()[0:2])
-        ioStart_n=np.sum(proc.io_counters()[0:2])
+        cpuStart_n=np.sum(procu.cpu_times()[0:2])
+        ioStart_n=np.sum(procu.io_counters()[0:2])
         
         print([(cpuStart_n-cpuStart_o)/2,(ioStart_n-ioStart_o)/2])
         
