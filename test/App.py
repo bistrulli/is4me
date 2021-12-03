@@ -48,10 +48,10 @@ if __name__ == "__main__":
         cpuStart_n=np.sum(procu.cpu_times()[0:2])
         ioStart_n=np.sum(procu.io_counters()[0:2])
         
-        print([(cpuStart_n-cpuStart_o)/2,(ioStart_n-ioStart_o)/2])
+        print([(cpuStart_n-cpuStart_o)/2.0,(ioStart_n-ioStart_o)/2.0])
         
-        cpuStart_n=cpuStart_o
-        ioStart_n=ioStart_o
+        cpuStart_o=cpuStart_n
+        ioStart_o=ioStart_n
         i+=1
     
     
