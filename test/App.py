@@ -9,6 +9,7 @@ import numpy as np
 from multiprocessing import Process
 import time
 import subprocess
+import os
 
 class myApp(object):
     
@@ -25,7 +26,7 @@ class myApp(object):
         
         print("stress io")
         subprocess.check_call(["stress-ng","--iomix","1",
-                               "--iomix-bytes","10%","-t 10s"],stdout=None)
+                               "--iomix-bytes","10%","-t 15s"],stdout=devnull, stderr=devnull)
     
     def start(self):
         while(True):
@@ -42,14 +43,14 @@ if __name__ == "__main__":
     
     cpuStart_o=np.sum(procu.cpu_times()[0:2])
     ioStart_o=np.sum(procu.io_counters()[0:2])
+    
+    interval=1
     i=0
     for i in range(100):
-        time.sleep(2)
+        time.sleep(interval)
         cpuStart_n=np.sum(procu.cpu_times()[0:2])
         ioStart_n=np.sum(procu.io_counters()[0:2])
-        
-        print([(cpuStart_n-cpuStart_o)/2.0,(ioStart_n-ioStart_o)/2.0])
-        
+        print([(cpuStart_n-cpuStart_o)/interval,(ioStart_n-ioStart_o)/interval])
         cpuStart_o=cpuStart_n
         ioStart_o=ioStart_n
         i+=1
