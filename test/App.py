@@ -43,7 +43,7 @@ if __name__ == "__main__":
     cpuStart_o=np.sum(procu.cpu_times()[0:2])
     ioStart_o=np.sum(procu.io_counters()[0:2])
     
-    interval=2
+    interval=5
     i=0
     for i in range(100):
         time.sleep(interval)
