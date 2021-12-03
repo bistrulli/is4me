@@ -42,7 +42,9 @@ if __name__ == "__main__":
     
     i=0
     for i in range(100):
-        print(procu.cpu_percent(interval=2))
+        #print(procu.cpu_percent(interval=2))
+        print(procu.io_counters())
+        time.sleep(2)
         i+=1
     
     
