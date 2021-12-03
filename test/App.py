@@ -25,8 +25,7 @@ class myApp(object):
             pass
         
         print("stress io")
-        subprocess.check_call(["stress-ng","--iomix","1",
-                               "--iomix-bytes","10%","-t 15s"],stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+        subprocess.check_call(["stress-ng","--hdd","1","-t 10s"],stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
     
     def start(self):
         while(True):
